@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.facebook.testing.screenshot'
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
@@ -10,11 +11,11 @@ android {
     defaultConfig {
         applicationId "me.vavra.showkase"
         minSdk 26
-        targetSdk 31
+        targetSdk 30
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "me.vavra.showkase.ScreenshotTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
@@ -27,11 +28,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
         useIR = true
     }
     buildFeatures {
@@ -65,5 +66,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    androidTestImplementation "com.facebook.testing.screenshot:layout-hierarchy-common:0.14.0"
+    androidTestImplementation "com.airbnb.android:showkase-screenshot-testing:1.0.0-beta08"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 }
