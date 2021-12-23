@@ -68,5 +68,6 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     androidTestImplementation "com.facebook.testing.screenshot:layout-hierarchy-common:0.14.0"
     androidTestImplementation "com.airbnb.android:showkase-screenshot-testing:1.0.0-beta08"
+    kaptAndroidTest "com.airbnb.android:showkase-processor:1.0.0-beta08"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 }
