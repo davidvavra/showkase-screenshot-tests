@@ -1,0 +1,68 @@
+plugins {
+    id 'com.android.library'
+    id 'com.facebook.testing.screenshot'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'app.cash.paparazzi'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 26
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.5.30'
+    }
+}
+
+dependencies {
+
+    implementation project(":feature")
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+    implementation "com.airbnb.android:showkase:1.0.0-beta08"
+    kapt "com.airbnb.android:showkase-processor:1.0.0-beta08"
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    androidTestImplementation "com.facebook.testing.screenshot:layout-hierarchy-common:0.14.0"
+    androidTestImplementation "com.airbnb.android:showkase-screenshot-testing:1.0.0-beta08"
+    kaptAndroidTest "com.airbnb.android:showkase-processor:1.0.0-beta08"
+
+    testImplementation 'junit:junit:4.+'
+    testImplementation "com.airbnb.android:showkase-screenshot-testing:1.0.0-beta08"
+    kaptTest "com.airbnb.android:showkase-processor:1.0.0-beta08"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
+}

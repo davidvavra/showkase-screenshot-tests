@@ -1,4 +1,4 @@
-package me.vavra.showkase
+package me.vavra.screenshots
 
 import android.graphics.Bitmap
 import android.widget.ImageView
@@ -8,10 +8,9 @@ import com.airbnb.android.showkase.screenshot.testing.ShowkaseScreenshotTest
 import com.airbnb.android.showkase.screenshot.testing.ShowkaseScreenshotType
 import com.facebook.testing.screenshot.Screenshot
 import com.facebook.testing.screenshot.ViewHelpers
-import org.junit.Test
 
 @ShowkaseScreenshot(rootShowkaseClass = ShowkaseRoot::class)
-abstract class ComposeTests : ShowkaseScreenshotTest {
+abstract class ComposeFacebookTests : ShowkaseScreenshotTest {
 
     override fun onScreenshot(
         id: String,

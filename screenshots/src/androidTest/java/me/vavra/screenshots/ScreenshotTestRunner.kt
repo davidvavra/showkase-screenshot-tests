@@ -1,4 +1,4 @@
-package me.vavra.showkase
+package me.vavra.screenshots
 
 import android.os.Bundle
 import androidx.test.runner.AndroidJUnitRunner
