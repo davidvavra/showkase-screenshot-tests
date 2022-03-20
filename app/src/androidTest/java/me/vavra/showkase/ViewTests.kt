@@ -2,20 +2,16 @@ package me.vavra.showkase
 
 import android.widget.TextView
 import androidx.test.platform.app.InstrumentationRegistry
-import com.facebook.testing.screenshot.Screenshot
-import com.facebook.testing.screenshot.ViewHelpers
+import com.karumi.shot.ScreenshotTest
 import org.junit.Test
 
-class ViewTests {
+class ViewTests : ScreenshotTest {
 
     @Test
     fun doScreenshot() {
         val view = TextView(InstrumentationRegistry.getInstrumentation().context)
         view.text = "Hello from XML!"
 
-        ViewHelpers.setupView(view)
-            .setExactWidthDp(300)
-            .layout()
-        Screenshot.snap(view).record()
+        compareScreenshot(view, widthInPx = 300)
     }
 }
