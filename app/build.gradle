@@ -1,8 +1,12 @@
 plugins {
     id 'com.android.application'
-    id 'com.facebook.testing.screenshot'
+    id 'shot'
     id 'kotlin-android'
     id 'kotlin-kapt'
+}
+
+shot {
+    applicationId = "me.vavra.showkase"
 }
 
 android {
@@ -15,7 +19,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "me.vavra.showkase.ScreenshotTestRunner"
+        testInstrumentationRunner "com.karumi.shot.ShotTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
