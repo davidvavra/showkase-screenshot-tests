@@ -18,13 +18,13 @@ fi
 PR_NUMBER=${GITHUB_REF#refs/pull/}
 PR_NUMBER=${PR_NUMBER/\/merge/}
 NEW_BRANCH_NAME="snapshots/pr-$PR_NUMBER"
+echo "::set-output name=PR_NUMBER::$PR_NUMBER"
 
-git config user.email "ci-cd@vavra.me"
+git config user.email "david@vavra.me" # TODO: replace with some CI/CD GitHub user
 git fetch --all
 git checkout --track "origin/$PR_BRANCH"
 git checkout -b "$NEW_BRANCH_NAME"
 git add -A
 git commit -m "Update screenshots"
 git push --force "https://$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
-echo "::set-output name=PR_NUMBER::$PR_NUMBER"
 echo "::set-output name=PR_COMMENT::\"Screenshot tests failed.\\n\\n[See differences](https://github.com/$GITHUB_REPOSITORY/compare/$PR_BRANCH...$NEW_BRANCH_NAME)\\n\\nMerge the branch if it's an intentional change.\""
