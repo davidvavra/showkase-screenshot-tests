@@ -1,0 +1,41 @@
+name: Pull request validation (main)
+
+on:
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: pr-main-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  screenshot-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Run screenshot tests
+        id: run-screenshot-tests
+        run: ./gradlew verifyPaparazziDebug
+      - name: Process failed snapshot tests
+        if: failure()
+        id: failed-screenshots
+        run: "./.github/workflows/scripts/process_failed_screenshots.sh"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_PUSH_TOKEN }}
+          GITHUB_ACTOR: ${{ secrets.GITHUB_PUSH_ACTOR }}
+          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+          PR_BRANCH: ${{ github.head_ref }}
+      - name: Comment PR if snapshot tests
+        uses: octokit/request-action@v2.0.0
+        if: always() && steps.failed-screenshots.outputs.PR_COMMENT
+        with:
+          route: POST /repos/:repo/issues/:issue_number/comments
+          repo: ${{ github.repository }}
+          issue_number: ${{ steps.pr-number.outputs.PR_NUMBER }}
+          body: ${{ steps.failed-snapshots.outputs.PR_COMMENT }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
