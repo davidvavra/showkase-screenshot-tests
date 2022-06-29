@@ -1,19 +1,23 @@
 package me.vavra.feature
 
+import androidx.compose.foundation.background
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import me.vavra.feature.theme.ShowkaseTheme
 
 @Composable
 fun FeatureGreeting() {
-    Text(text = "Hello from feature module!")
+    Text(
+        text = "Hello from Showkase-Paparazi!",
+        color = MaterialTheme.colors.onSurface,
+        modifier = Modifier.background(MaterialTheme.colors.surface)
+    )
 }
 
-@Preview(name = "Feature module greeting", group = "Greetings")
+@Preview(name = "Hello Greeting", group = "Greetings")
 @Composable
 fun DefaultPreview() {
-    ShowkaseTheme {
-        FeatureGreeting()
-    }
+    FeatureGreeting()
 }

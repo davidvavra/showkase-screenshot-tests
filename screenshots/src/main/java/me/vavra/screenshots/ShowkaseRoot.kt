@@ -1,4 +1,4 @@
-package me.vavra.showkase
+package me.vavra.screenshots
 
 import com.airbnb.android.showkase.annotation.ShowkaseRoot
 import com.airbnb.android.showkase.annotation.ShowkaseRootModule

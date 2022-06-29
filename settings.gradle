@@ -8,4 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Showkase"
 include ':app'
+include ':screenshots'
 include ':feature'
