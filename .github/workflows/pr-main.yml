@@ -25,8 +25,7 @@ jobs:
         id: failed-screenshots
         run: "./.github/workflows/scripts/process_failed_screenshots.sh"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_PUSH_TOKEN }}
-          GITHUB_ACTOR: ${{ secrets.GITHUB_PUSH_ACTOR }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
           PR_BRANCH: ${{ github.head_ref }}
       - name: Comment PR if snapshot tests

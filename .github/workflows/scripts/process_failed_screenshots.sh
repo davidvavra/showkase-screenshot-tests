@@ -5,11 +5,6 @@ if [[ -z ${GITHUB_TOKEN} ]]; then
   exit 1
 fi
 
-if [[ -z ${GITHUB_ACTOR} ]]; then
-  echo "Missing GITHUB_ACTOR variable"
-  exit 1
-fi
-
 if [[ -z ${GITHUB_REPOSITORY} ]]; then
   echo "Missing GITHUB_REPOSITORY variable"
   exit 1
@@ -29,5 +24,5 @@ git checkout --track "origin/$PR_BRANCH"
 git checkout -b "$NEW_BRANCH_NAME"
 git add -A
 git commit -m "Update screenshots"
-git push --force "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+git push --force "https://$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
 echo "::set-output name=PR_COMMENT::\"Screenshot tests failed.\\n\\n[See differences](https://github.com/$GITHUB_REPOSITORY/compare/$PR_BRANCH...$NEW_BRANCH_NAME)\\n\\nMerge the branch if it's an intentional change.\""
