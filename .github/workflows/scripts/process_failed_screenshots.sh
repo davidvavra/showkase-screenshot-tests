@@ -20,6 +20,7 @@ PR_NUMBER=${PR_NUMBER/\/merge/}
 NEW_BRANCH_NAME="snapshots/pr-$PR_NUMBER"
 echo "::set-output name=PR_NUMBER::$PR_NUMBER"
 
+git config user.name "CI/CD"
 git config user.email "david@vavra.me" # TODO: replace with some CI/CD GitHub user
 git fetch --all
 git checkout --track "origin/$PR_BRANCH"
