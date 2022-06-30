@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun FeatureGreeting() {
     Text(
-        text = "Hello from Showkase-Paparazi!",
+        text = "Hello from Showkase-Paparazzi!",
         color = MaterialTheme.colors.onSurface,
         modifier = Modifier.background(MaterialTheme.colors.surface)
     )
